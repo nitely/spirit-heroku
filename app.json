@@ -1,0 +1,15 @@
+{
+  "name": "spirit-heroku",
+  "description": "Spirit forum",
+  "repository": "https://github.com/nitely/spirit-heroku",
+  "keywords": ["spirit", "django"],
+  "env": {
+    "SECRET_KEY": "change_me"
+  },
+  "scripts": {
+    "postdeploy": "python manage.py spiritinstall"
+  },
+  "addons": [
+    "heroku-postgresql:hobby-dev"
+  ]
+}
