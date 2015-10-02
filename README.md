@@ -14,6 +14,7 @@ Make sure you have installed the [Heroku Toolbelt](https://toolbelt.heroku.com/)
 $ heroku login
 $ heroku git:clone -a my-app-name  # Change my-app-name by your app name, found in "Personal Apps"
 $ cd my-app-name
+$ heroku run python manage.py createsuperuser  # Create your administrator user for Spirit
 ```
 
 Where do I go from here? the next section you should visit is *[Setting up an email service provider](https://github.com/nitely/spirit-heroku#setting-up-an-email-service-provider)*
