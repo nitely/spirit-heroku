@@ -2,7 +2,23 @@
 
 This project setups latest Spirit with Python 3.4 and PostgreSQL on heroku.
 
-# Create the app
+# Create the app: Automatic deployment
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/nitely/spirit-heroku)
+
+After you complete the above deployment (click on deploy button), you may want to clone it locally to make further deploy changes.
+
+Make sure you have installed the [Heroku Toolbelt](https://toolbelt.heroku.com/)
+
+```
+$ heroku login
+$ heroku git:clone -a my-app-name  # Change my-app-name by your app name, found in "Personal Apps"
+$ cd my-app-name
+```
+
+Where do I go from here? the next section you should visit is *[Setting up an email service provider](https://github.com/nitely/spirit-heroku#setting-up-an-email-service-provider)*
+
+# Create the app: Manual deployment
 
 Follow this steps along the *[Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python)* guide
 
