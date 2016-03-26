@@ -8,13 +8,14 @@ This project setups latest Spirit with Python 3.4 and PostgreSQL on heroku.
 
 To deploy the app, click the above *deploy* button.
 
-Spirit requires a SMTP server in order to send emails (ie: user activation, password reset, etc).
+# SMTP Provider
+
+Although Spirit requires a SMTP provider in order to send emails (ie: user activation, password reset, etc),
+it's possible to try this out *without* setting up a SMTP provider.
+
 Heroku has [many addons](https://elements.heroku.com/search?utf8=%E2%9C%93&q=email)
 but you can also use Gmail's SMTP (it has a daily limit, though)
 or something like [postmark](https://postmarkapp.com/).
-
-It's possible to try this out without setting up a SMTP provider,
-since an admin user is created by default.
 
 # Limitations
 
@@ -29,7 +30,7 @@ and instead of Whoosh use [elastic-search](https://elements.heroku.com/addons/bo
 
 Or don't use Heroku ;)
 
-# Deploying changes to the source code
+# Deploying changes
 
 First clone this repo and associate it to the heroku repo:
 
