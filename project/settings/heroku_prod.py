@@ -4,7 +4,7 @@
 # Create your own local_prod.py and import this module there to
 # override variables and add new ones.
 
-from .prod import *
+from .base import *
 
 import os
 import dj_database_url
@@ -23,10 +23,10 @@ if 'ADMIN_EMAIL' in os.environ:
 SECRET_KEY = os.environ.get('SECRET_KEY', "")
 
 # Parse database configuration from $DATABASE_URL
-DATABASES['default'] = dj_database_url.config()
-
-# Enable Connection Pooling (if desired)
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
+DATABASES = {
+    'default': dj_database_url.config()
+}
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -48,20 +48,49 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', "")
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', "")
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# These are all the languages Spirit provides.
+# https://www.transifex.com/projects/p/spirit/
+gettext_noop = lambda s: s
+LANGUAGES = [
+    ('de', gettext_noop('German')),
+    ('en', gettext_noop('English')),
+    ('es', gettext_noop('Spanish')),
+    ('fr', gettext_noop('French')),
+    ('pl', gettext_noop('Polish')),
+    ('pl-pl', gettext_noop('Poland Polish')),
+    ('ru', gettext_noop('Russian')),
+    ('sv', gettext_noop('Swedish')),
+    ('zh-hans', gettext_noop('Simplified Chinese')),
+]
+
 # Default language
 LANGUAGE_CODE = os.environ.get('DEFAULT_LANGUAGE_CODE', 'en')
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
-
-STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-#STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR, 'static'),
-#)
+# Keep templates in memory
+del TEMPLATES[0]['APP_DIRS']
+TEMPLATES[0]['OPTIONS']['loaders'] = [
+    ('django.template.loaders.cached.Loader', (
+        'django.template.loaders.filesystem.Loader',
+        'django.template.loaders.app_directories.Loader',
+    )),
+]
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+MIDDLEWARE_CLASSES.extend([
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+])
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
