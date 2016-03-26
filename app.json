@@ -30,7 +30,7 @@
       "value": "",
       "required": false
     },
-    "EMAIL_PORT": 587,
+    "EMAIL_PORT": "587",
     "EMAIL_HOST_USER": {
       "description": "Username to use for the SMTP server defined in EMAIL_HOST.",
       "value": "",
