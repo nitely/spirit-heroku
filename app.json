@@ -4,17 +4,47 @@
   "repository": "https://github.com/nitely/spirit-heroku",
   "keywords": ["spirit", "django"],
   "env": {
-    "SECRET_KEY": "",
-    "ALLOWED_HOSTS": "*",
+    "SECRET_KEY": {
+      "description": "This is used to provide cryptographic signing, used for sessions, cookies and password reset tokens.",
+      "generator": "secret"
+    },
+    "ALLOWED_HOSTS": {
+      "description": "A list of comma-separated host/domain names that this Django site can serve.",
+      "value": "*"
+    },
     "DEFAULT_LANGUAGE_CODE": "en",
-    "ADMIN_USERNAME": "admin",
-    "ADMIN_PASSWORD": "1234",
-    "ADMIN_EMAIL": "admin@example.com",
-    "EMAIL_HOST": "",
+    "ADMIN_USERNAME": {
+      "description": "Username to login the forum as an admin, this can be changed later.",
+      "value": "admin"
+    },
+    "ADMIN_PASSWORD": {
+      "description": "Password to login the forum as an admin, this can be changed later.",
+      "value": "1234"
+    },
+    "ADMIN_EMAIL": {
+      "description": "Error notifications will be sent to this email.",
+      "value": "admin@example.com"
+    },
+    "EMAIL_HOST": {
+      "description": "The host to use for sending email.",
+      "value": "",
+      "required": false
+    },
     "EMAIL_PORT": 587,
-    "EMAIL_HOST": "",
-    "EMAIL_HOST_PASSWORD": "",
-    "DEFAULT_FROM_EMAIL": ""
+    "EMAIL_HOST_USER": {
+      "description": "Username to use for the SMTP server defined in EMAIL_HOST.",
+      "value": "",
+      "required": false
+    },
+    "EMAIL_HOST_PASSWORD": {
+      "description": "Password to use for the SMTP server defined in EMAIL_HOST.",
+      "value": "",
+      "required": false
+    },
+    "DEFAULT_FROM_EMAIL": {
+      "description": "Default email address to use for various automated correspondence from the site manager(s).",
+      "value": ""
+    },
   },
   "scripts": {
     "postdeploy": "chmod +x postdeploy.sh && ./postdeploy.sh"
