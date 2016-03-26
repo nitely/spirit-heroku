@@ -2,76 +2,41 @@
 
 This project setups latest Spirit with Python 3.4 and PostgreSQL on heroku.
 
-# Create the app: Automatic deployment
+# Deploy the app
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/nitely/spirit-heroku)
 
-After you complete the above deployment (click on deploy button), you may want to clone it locally to make further deploy changes.
+To deploy the app, click the above *deploy* button.
 
-Make sure you have installed the [Heroku Toolbelt](https://toolbelt.heroku.com/)
+Spirit requires a SMTP server in order to send emails (ie: user activation, password reset, etc).
+Heroku has [many addons](https://elements.heroku.com/search?utf8=%E2%9C%93&q=email)
+but you can also use Gmail's SMTP (it has a daily limit, though)
+or something like [postmark](https://postmarkapp.com/).
+
+# Limitations
+
+It's not possible to make
+[persistent changes to the filesystem](https://devcenter.heroku.com/articles/dynos#ephemeral-filesystem)
+of a (Dyno) Heroku instance.
+This means it's not possible to upload files or build the (Whoosh) search index.
+
+There are ways to overcome this: images can be uploaded to AWS S3
+(there are many Django apps out there for this)
+and instead of Whoosh use [elastic-search](https://elements.heroku.com/addons/bonsai).
+
+Or don't use Heroku ;)
+
+# Deploying changes to the source code
+
+First clone this repo and associate it to the heroku repo:
 
 ```
-$ heroku login
-$ heroku git:clone -a my-app-name  # Change my-app-name by your app name, found in "Personal Apps"
-$ cd my-app-name
-$ heroku run python manage.py createsuperuser  # Create your administrator user for Spirit
-```
-
-Where do I go from here? the next section you should visit is *[Setting up an email service provider](https://github.com/nitely/spirit-heroku#setting-up-an-email-service-provider)*
-
-# Create the app: Manual deployment
-
-Follow this steps along the *[Getting Started with Python on Heroku](https://devcenter.heroku.com/articles/getting-started-with-python)* guide
-
-```
-$ heroku login  # step: Set up
-$ git clone https://github.com/nitely/spirit-heroku.git  # step: Prepare the app
+$ git clone https://github.com/nitely/spirit-heroku.git
 $ cd spirit-heroku
-$ heroku create  # step: Deploy the app
-
-# Go to http://www.miniwebtool.com/django-secret-key-generator/ and generate a key
-$ heroku config:set SECRET_KEY="my_generated_key"  # ie: SECRET_KEY="ybz&m)c4+gm#4nh(shz4t^3gk2w7b!!99rbdha&4jll=8!-7j_"
-$ heroku config  # Should display the SECRET_KEY
-
-$ git push heroku master
-$ heroku run python manage.py spiritinstall
-$ heroku run python manage.py createsuperuser
-$ heroku ps:scale web=1
-$ heroku open
+$ heroku git:remote -a my-app-name
 ```
 
-# Setting up an email service provider
-
-Spirit requires an email service provider.
-There are many [heroku addons to send emails](https://addons.heroku.com/?q=email).
-This example uses [postmark](https://postmarkapp.com/) SMTP (no addon required).
-
-Create a `local_prod.py` file within the `./project/settings` folder:
-
-> Note: when a `local_prod.py` is found, it will loaded instead of `heroku_prod.py`.
-
-```
-# local_prod.py
-
-from .heroku_prod import *
-
-
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.postmarkapp.com'
-EMAIL_PORT = 587
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-# Change this credentials
-EMAIL_HOST_USER = 'postmark_api_key'
-EMAIL_HOST_PASSWORD = 'postmark_api_key'
-DEFAULT_FROM_EMAIL = 'noreply@myforum.com'
-```
-
-You will have to deploy the new changes to heroku (see the next section).
-
-# Deploying changes
-
-After creating/modifying a file (ie: `local_prod.py`) you may want to deploy your changes to heroku.
+Then make the desire changes to the files and deploy it:
 
 ```
 $ git add .
@@ -79,21 +44,18 @@ $ git commit -am "my changes"
 $ git push heroku master
 ```
 
-# Running locally
+# Troubleshooting
 
-This assumes you have followed the *Create the app* section steps.
-
-Make sure you have installed [Heroku Toolbelt](https://toolbelt.heroku.com/) and [PostgreSQL](https://devcenter.heroku.com/articles/heroku-postgresql#local-setup).
+If you haven't yet, clone this repo and associate it to the heroku repo:
 
 ```
-$ virtualenv -p /usr/bin/python3.4 venv  # Ubuntu 14.04
-$ source venv/bin/activate
-$ pip install -r requirements.txt
-$ sudo -u postgres createuser -s $USER  # Ubuntu 14.04
-$ createdb spirit
-$ heroku local:run python manage.py spiritinstall
-$ heroku local:run python manage.py createsuperuser
-$ heroku local web
+$ git clone https://github.com/nitely/spirit-heroku.git
+$ cd spirit-heroku
+$ heroku git:remote -a my-app-name
 ```
 
-Visit [http://0.0.0.0:5000](http://0.0.0.0:5000)
+Then run the following command to show the error log:
+
+```
+$ heroku logs
+```
