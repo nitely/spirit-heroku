@@ -63,3 +63,7 @@ Then run the following command to show the error log:
 ```
 $ heroku logs
 ```
+
+# License
+
+MIT
