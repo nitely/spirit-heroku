@@ -13,6 +13,9 @@ Heroku has [many addons](https://elements.heroku.com/search?utf8=%E2%9C%93&q=ema
 but you can also use Gmail's SMTP (it has a daily limit, though)
 or something like [postmark](https://postmarkapp.com/).
 
+It's possible to try this out without setting up a SMTP provider,
+since an admin user is created by default.
+
 # Limitations
 
 It's not possible to make
