@@ -44,7 +44,7 @@
     "DEFAULT_FROM_EMAIL": {
       "description": "Default email address to use for various automated correspondence from the site manager(s).",
       "value": ""
-    },
+    }
   },
   "scripts": {
     "postdeploy": "chmod +x postdeploy.sh && ./postdeploy.sh"
