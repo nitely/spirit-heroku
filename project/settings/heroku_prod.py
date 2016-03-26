@@ -16,6 +16,9 @@ DEBUG = False
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
+if 'ADMIN_EMAIL' in os.environ:
+    ADMINS = (('Admin', os.environ['ADMIN_EMAIL']), )
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', "")
 
@@ -43,6 +46,9 @@ EMAIL_PORT = int(os.environ.get('EMAIL_PORT', 587))
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST', "")
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', "")
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', "")
+
+# Default language
+LANGUAGE_CODE = os.environ.get('DEFAULT_LANGUAGE_CODE', 'en')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/

@@ -6,6 +6,10 @@
   "env": {
     "SECRET_KEY": "",
     "ALLOWED_HOSTS": "",
+    "DEFAULT_LANGUAGE_CODE": "en",
+    "ADMIN_USERNAME": "admin",
+    "ADMIN_PASSWORD": "1234",
+    "ADMIN_EMAIL": "admin@example.com",
     "EMAIL_HOST": "",
     "EMAIL_PORT": 587,
     "EMAIL_HOST": "",
@@ -13,7 +17,7 @@
     "DEFAULT_FROM_EMAIL": ""
   },
   "scripts": {
-    "postdeploy": "python manage.py migrate && python manage.py createcachetable"
+    "postdeploy": "chmod +x postdeploy.sh && ./postdeploy.sh"
   },
   "addons": [
     "heroku-postgresql:hobby-dev"
