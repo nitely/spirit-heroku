@@ -43,7 +43,7 @@
     },
     "DEFAULT_FROM_EMAIL": {
       "description": "Default email address to use for various automated correspondence from the site manager(s).",
-      "value": ""
+      "value": "admin@example.com"
     }
   },
   "scripts": {
