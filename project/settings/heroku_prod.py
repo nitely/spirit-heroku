@@ -52,9 +52,9 @@ STATIC_ROOT = os.path.join(BASE_DIR_ABS, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR_ABS, 'static'),
-)
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR_ABS, 'static'),
+#)
 
 MEDIA_ROOT = os.path.join(BASE_DIR_ABS, 'media')
 
