@@ -11,7 +11,7 @@ To deploy the app, click the above *deploy* button.
 # SMTP Provider
 
 Although Spirit requires a SMTP provider in order to send emails (ie: user activation, password reset, etc),
-it's possible to try this out *without* setting up a SMTP provider.
+it's possible to try this out *without* one.
 
 Heroku has [many addons](https://elements.heroku.com/search?utf8=%E2%9C%93&q=email)
 but you can also use Gmail's SMTP (it has a daily limit, though)
