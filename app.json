@@ -4,7 +4,13 @@
   "repository": "https://github.com/nitely/spirit-heroku",
   "keywords": ["spirit", "django"],
   "env": {
-    "SECRET_KEY": "change_me"
+    "SECRET_KEY": "",
+    "ALLOWED_HOSTS": "",
+    "EMAIL_HOST": "",
+    "EMAIL_PORT": 587,
+    "EMAIL_HOST": "",
+    "EMAIL_HOST_PASSWORD": "",
+    "DEFAULT_FROM_EMAIL": ""
   },
   "scripts": {
     "postdeploy": "python manage.py migrate && python manage.py createcachetable"
