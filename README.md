@@ -1,6 +1,6 @@
 # Environment
 
-This project setups latest Spirit with Python 3.4 and PostgreSQL on heroku.
+This project setups latest Spirit with Python 3.6 and PostgreSQL on heroku.
 
 # Deploy the app
 
