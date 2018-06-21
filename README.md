@@ -30,28 +30,43 @@ $ heroku git:remote -a my-app-name
 5. Copy and paste the requirements in the requirements.txt file of [spirit-heroku repo](https://github.com/nitely/spirit-heroku/blob/master/requirements.txt) into the requirements.txt file on your local machine or cloned repo. After that, change the django version in the requirements.txt file to Django==1.11.13.
                                                       OR
  Add the text below to the requirements.txt file of your cloned repo:
-                                                  ```       [
+                                                  [
+                                                
                                                 Django==1.11.13
+                                                
                                                 django-sendgrid-v5==0.6.87
+                                                
                                                 python-http-client==3.1.0
+                                                
                                                 pytz==2018.4
+                                                
                                                 sendgrid==5.4.0
+                                                
                                                 django-spirit
+                                                
                                                 dj-database-url==0.3.0
+                                                
                                                 gunicorn==19.3.0
+                                                
                                                 psycopg2==2.7.3.2
+                                                
                                                 SQLAlchemy==1.0.4
+                                                
                                                 whitenoise==3.0
-                                                ]```
+                                                ]
 
 6. In your cloned repo on your local machine, open a text editor and navigate to spirit-heroku/project/settings/heroku_prod.py and add this:
-                                    ```
+                                    
                                     # Django Email configuration
+                                    
                                     EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+                                    
                                     SENDGRID_API_KEY = "YOUR SENDGRID API KEY"
+                                    
                                     SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+                                    
                                     DEFAULT_FROM_EMAIL = 'DEFAULT FROM EMAIL' 
-                                    ```
+                                    
 
 to the file and uncomment or delete the other two email configuration settings.
 
