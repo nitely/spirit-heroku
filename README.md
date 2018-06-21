@@ -25,7 +25,9 @@ $ git clone https://github.com/nitely/spirit-heroku.git
 $ cd spirit-heroku
 $ heroku git:remote -a my-app-name
 ```
-4.  cd spirit-heroku and Update the requiements.txt file of the cloned repo (spirit-heroku) with pip freeze > requirements.txt
+4.  cd spirit-heroku and Update the requiements.txt file of the cloned repo (spirit-heroku) with 
+
+                                        pip freeze > requirements.txt
 
 5. Copy and paste the requirements in the requirements.txt file of [spirit-heroku repo](https://github.com/nitely/spirit-heroku/blob/master/requirements.txt) into the requirements.txt file on your local machine or cloned repo. After that, change the django version in the requirements.txt file to Django==1.11.13.
                                                       OR
