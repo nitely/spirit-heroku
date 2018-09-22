@@ -15,7 +15,7 @@ from .base import *
 DEBUG = True
 
 TEMPLATES[0]['OPTIONS']['debug'] = True
-# TEMPLATES[0]['OPTIONS']['string_if_invalid'] = '{{ %s }}'  # Some Django templates relies on this being the default
+# TEMPLATES[0]['OPTIONS']['string_if_invalid'] = '\{\{%s\}\}'  # Some Django templates relies on this being the default
 
 ADMINS = (('John', 'john@example.com'), )  # Log email to console when DEBUG = False
 
@@ -26,6 +26,9 @@ ALLOWED_HOSTS = ['127.0.0.1', ]
 # INSTALLED_APPS.extend([
 #    'debug_toolbar',
 # ])
+
+# Database
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -38,6 +41,11 @@ CACHES.update({
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
     },
+    'st_rate_limit': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'spirit_rl_cache',
+        'TIMEOUT': None
+    }
 })
 
 PASSWORD_HASHERS = [

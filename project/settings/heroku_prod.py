@@ -4,13 +4,11 @@
 # Create your own local_prod.py and import this module there to
 # override variables and add new ones.
 
-from .base import *
+from .prod import *
 
 import os
 import dj_database_url
 
-
-DEBUG = False
 
 BASE_DIR_ABS = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -51,39 +49,10 @@ SERVER_EMAIL = DEFAULT_FROM_EMAIL
 STATIC_ROOT = os.path.join(BASE_DIR_ABS, 'staticfiles')
 STATIC_URL = '/static/'
 
-# Extra places for collectstatic to find static files.
-#STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR_ABS, 'static'),
-#)
-
 MEDIA_ROOT = os.path.join(BASE_DIR_ABS, 'media')
-
-# These are all the languages Spirit provides.
-# https://www.transifex.com/projects/p/spirit/
-gettext_noop = lambda s: s
-LANGUAGES = [
-    ('de', gettext_noop('German')),
-    ('en', gettext_noop('English')),
-    ('es', gettext_noop('Spanish')),
-    ('fr', gettext_noop('French')),
-    ('pl', gettext_noop('Polish')),
-    ('pl-pl', gettext_noop('Poland Polish')),
-    ('ru', gettext_noop('Russian')),
-    ('sv', gettext_noop('Swedish')),
-    ('zh-hans', gettext_noop('Simplified Chinese')),
-]
 
 # Default language
 LANGUAGE_CODE = os.environ.get('DEFAULT_LANGUAGE_CODE', 'en')
-
-# Keep templates in memory
-del TEMPLATES[0]['APP_DIRS']
-TEMPLATES[0]['OPTIONS']['loaders'] = [
-    ('django.template.loaders.cached.Loader', (
-        'django.template.loaders.filesystem.Loader',
-        'django.template.loaders.app_directories.Loader',
-    )),
-]
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
