@@ -2,6 +2,7 @@
 venv
 static
 db.sqlite3
+*local_prod.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
