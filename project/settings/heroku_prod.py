@@ -56,7 +56,7 @@ LANGUAGE_CODE = os.environ.get('DEFAULT_LANGUAGE_CODE', 'en')
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-MIDDLEWARE_CLASSES.extend([
+MIDDLEWARE.extend([
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ])
 
