@@ -1,6 +1,6 @@
 # Environment
 
-This project setups latest Spirit with Python 3.6 and PostgreSQL on heroku.
+This project setups latest Spirit with Python 3.8 and PostgreSQL on heroku.
 
 # Deploy the app
 
@@ -32,7 +32,8 @@ Or don't use Heroku ;)
 
 # Deploying changes
 
-First clone this repo and associate it to the heroku repo:
+First install [Heroku CLI tool](https://devcenter.heroku.com/articles/heroku-cli#download-and-install),
+then clone this repo and associate it to the heroku repo:
 
 ```
 $ git clone https://github.com/nitely/spirit-heroku.git
@@ -61,7 +62,7 @@ $ heroku git:remote -a my-app-name
 Then run the following command to show the error log:
 
 ```
-$ heroku logs
+$ heroku logs --tail
 ```
 
 # License

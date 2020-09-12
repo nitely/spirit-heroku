@@ -44,6 +44,9 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', "")
 DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', "")
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
+ROOT_URLCONF = 'project.urls'
+WSGI_APPLICATION = 'project.wsgi.application'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR_ABS, 'staticfiles')
